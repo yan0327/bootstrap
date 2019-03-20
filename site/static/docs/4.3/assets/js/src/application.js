@@ -19,6 +19,21 @@
     return [].slice.call(list)
   }
 
+  document.querySelector('.bd-toggle-dark-mode')
+    .addEventListener('click', function () {
+      var isDarkModeEnabled = localStorage.getItem('bs-docs-dark-mode') === 0 || localStorage.getItem('bs-docs-dark-mode') === null
+
+      if (isDarkModeEnabled) {
+        // `alternate` string is not present in `rel` so let's add it
+        localStorage.setItem('bs-docs-dark-mode', '1')
+        document.documentElement.classList.add('bs-docs-dark-mode')
+      } else {
+        // `alternate` string is present in `rel` so let's remove it
+        localStorage.setItem('bs-docs-dark-mode', '0')
+        document.documentElement.classList.remove('bs-docs-dark-mode')
+      }
+    })
+
   // Tooltip and popover demos
   makeArray(document.querySelectorAll('.tooltip-demo'))
     .forEach(function (tooltip) {
